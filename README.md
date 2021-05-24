@@ -28,3 +28,9 @@ mysql-connector-java and spring-boot-starter-data-jpa for db
 lombok for auto configuration
 spring-boot-starter-thymeleaf to work with MVC pattern 
 and so more
+
+Besides, you should use OpenServer, run its server
+(but specify MySql module in setting beforehand)
+![image](https://user-images.githubusercontent.com/73914682/119370733-49a09180-bcbe-11eb-8398-178ddad5e635.png)
+
+and open http://localhost/openserver/phpmyadmin/index.php
