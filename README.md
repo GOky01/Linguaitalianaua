@@ -35,6 +35,11 @@ Besides, you should use OpenServer, run its server
 
 and open http://localhost/openserver/phpmyadmin/index.php
 
+Apart from this, notice to unable Unicode support 
+![image](https://user-images.githubusercontent.com/73914682/119372960-94bba400-bcc0-11eb-807b-cb03999e84d1.png)
+
+else your serverr may not launch
+
 You will see this page 
 
 ![image](https://user-images.githubusercontent.com/73914682/119371242-e2cfa800-bcbe-11eb-9bb4-4da2046ab771.png)
