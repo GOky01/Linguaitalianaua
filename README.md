@@ -34,3 +34,8 @@ Besides, you should use OpenServer, run its server
 ![image](https://user-images.githubusercontent.com/73914682/119370733-49a09180-bcbe-11eb-8398-178ddad5e635.png)
 
 and open http://localhost/openserver/phpmyadmin/index.php
+
+Last but not least, after runnig the program you can check it on localhost and manipulate with db
+(Application page)
+![image](https://user-images.githubusercontent.com/73914682/119371037-a8fea180-bcbe-11eb-8215-a217039124e3.png)
+
