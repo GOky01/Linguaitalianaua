@@ -23,7 +23,7 @@ You should make next steps:
 
 3.and press Ctrl+Enter.
 
-#Used dependencies:
+Used dependencies:
 mysql-connector-java and spring-boot-starter-data-jpa for db
 lombok for auto configuration
 spring-boot-starter-thymeleaf to work with MVC pattern 
