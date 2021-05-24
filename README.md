@@ -1,7 +1,8 @@
 # SnackVendingMachine
 
-This is an app that allows users to copy with Snack Vending Machine. Requirements For building and running the application you need: 1.
-git clone following link https://github.com/GOky01/SnackVendingMachine.git on your local machine
+This is an app that allows users to cope with Snack Vending Machine. Requirements For building and running the application you need:
+
+1.git clone following link https://github.com/GOky01/SnackVendingMachine.git on your local machine
 
 2.or download project ZIP image and unzip it to any directory you wish
 
