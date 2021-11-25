@@ -17,12 +17,10 @@ public class Category implements Comparable<Category>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
     private Double price = 0.00;
     @Column(columnDefinition = "integer default 0")
     private Long count;
-
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
     private Set<Purchase> purchases;
 
