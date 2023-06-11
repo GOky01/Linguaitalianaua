@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+  <title>Сповіщення</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/arrow.css">
+  <style>
+    body {
+      background: url(/images/background.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <a href="/" class="back-arrow">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+      <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </svg>
+  </a>
+  <h2>Notifications</h2>
+  <ul class="list-group">
+    <form th:action="@{/notifications/read-all}" method="post" class="float-right">
+      <button type="submit" class="btn btn-secondary btn-sm">Mark all as read</button>
+    </form>
+    <br>
+    <li th:each="notification : ${notifications}" class="list-group-item">
+      <span th:text="${notification.message}">Notification message</span>
+      <form th:action="@{/notifications/{notificationId}/mark-as-read(notificationId=${notification.id})}" method="post" class="float-right">
+        <button type="submit" class="btn btn-secondary btn-sm">Mark as read</button>
+      </form>
+    </li>
+  </ul>
+</main>
+
+</body>
+</html>

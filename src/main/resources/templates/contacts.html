@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Контакти</title>
+    <link rel="stylesheet" href="../static/css/profilebutts.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(/images/background.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="contact-container">
+    <h2>Контакти</h2>
+    <div class="contact-info">
+        <p>Зв'яжіться з нами, якщо у вас є питання або пропозиції:</p>
+        <p>Email: andrreyy7521@gmail.com</p>
+        <p>Телефон: +380684638004</p>
+        <p>Адреса: вул. Під Голоском 21/27, Львів</p>
+    </div>
+
+    <div class="profile-buttons">
+        <button onclick="window.location.href='/'">Головна</button>
+        <button onclick="window.location.href='/about'">Про нас</button>
+        <button onclick="window.location.href='/practice'">Практика</button>
+        <button onclick="window.location.href='/courses'">Курси</button>
+        <button onclick="window.location.href='/faq'">FAQ</button>
+    </div>
+</div>
+</body>
+</html>

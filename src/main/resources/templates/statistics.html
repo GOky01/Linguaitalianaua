@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Статистика</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(/images/background.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <a href="/" class="back-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+            <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+    </a>
+    <h2>Statistics</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Українське</th>
+            <th scope="col">Італійське</th>
+            <th scope="col">Вдалі спроби</th>
+            <th scope="col">Точність</th>
+            <th scope="col">Невдалі спроби</th>
+            <th scope="col">Похибка</th>
+            <th scope="col">Загальна кількість спроб</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="result : ${results}" th:if="${result.getWord() != null && result.getCorrectAnswers() != null && result.getIncorrectAnswers() != null && result.getAttempts() != null}">
+            <td th:text="${result.getWord().getUkrainian()}">Ukrainian</td>
+            <td th:text="${result.getWord().getItalian()}">Italian</td>
+            <td th:text="${result.getCorrectAnswers()}">Correct Attempts</td>
+            <td th:text="${(#numbers.formatDecimal(result.correctAnswers / result.attempts * 100, 1,2)) + '%'}">Success Rate</td>
+            <td th:text="${result.getIncorrectAnswers()}">Incorrect Attempts</td>
+            <td th:text="${(#numbers.formatDecimal(result.incorrectAnswers / result.attempts * 100, 1,2)) + '%'}">Failure Rate</td>
+            <td th:text="${result.getAttempts()}">Total attempts</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

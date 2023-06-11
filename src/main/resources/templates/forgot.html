@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Вхід</title>
+    <style>
+        body {
+        background: url(/images/background.png) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }</style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<form th:action="@{/forgot}" method="post">
+    <h2>Forgot Password</h2>
+    <input type="email" name="email" placeholder="Email" required />
+    <button type="submit">Submit</button>
+</form>
+<p th:text="${message}" style="color: red;"></p>
+</body>
+</html>

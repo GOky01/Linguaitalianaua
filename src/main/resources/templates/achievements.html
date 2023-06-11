@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Досягнення</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/arrow.css">
+  <style>
+    body {
+      background: url(/images/background.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <a href="/" class="back-arrow">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+      <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </svg>
+  </a>
+  <h1>Досягнення</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Назва</th>
+      <th scope="col">Опис</th>
+      <th scope="col">Статус</th>
+      <th scope="col">Дата досягнення</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="achievement : ${achievements}">
+      <td th:text="${achievement.name}"></td>
+      <td th:text="${achievement.description}"></td>
+      <td th:text="${achievement.unlocked ? 'Отримано' : 'Не отримано'}"></td>
+      <td th:text="${achievement.achievedAt}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

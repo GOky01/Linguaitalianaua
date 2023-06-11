@@ -1,15 +1,166 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="shortcut icon" href="static/favicon.icon" type="image/x-icon"/>
-    <title>SnackMachine</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Головна</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        .fixed-size-card {
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .fixed-size-card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .fixed-size-card img {
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .fixed-size-card .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
+        }
+
+        .fixed-size-card .btn-primary {
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+        }
+
+        .fixed-size-card .btn-primary:hover {
+            color: #fff;
+            background-color: #449d44;
+            border-color: #398439;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        /*body {*/
+        /*    !*background: url(/images/background.png) no-repeat center center fixed;*!*/
+        /*    -webkit-background-size: cover;*/
+        /*    -moz-background-size: cover;*/
+        /*    -o-background-size: cover;*/
+        /*    background-size: cover;*/
+        /*    color: #333;*/
+        /*    font-family: Arial, sans-serif;*/
+        /*}*/
+    </style>
 </head>
-
 <body>
-<header th:insert="blocks/header :: header"></header>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">ItalianaUa</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Головна <span class="sr-only">(поточна)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about">Про нас</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contacts">Контакти</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="courses">Курси</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="faq">FAQ</a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{/logout}" method="post">
+                    <input class="nav-link btn btn-link" type="submit" value="Вийти"/>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1>Вітаємо у ItalianaUa!</h1>
+    <p>ItalianaUa - це інтерактивна платформа, яка дозволяє вам вчити та практикувати італійську мову весело та ефективно. У нас є різноманітний спектр вправ та інструментів, які допоможуть вам покращити ваші мовні навички та відстежувати ваш прогрес .</p>
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card fixed-size-card">
+                    <img src="/images/profile.png" class="card-img-top" alt="Профіль">
+                    <div class="card-body">
+                        <h5 class="card-title">Профіль</h5>
+                        <p class="card-text">У вашому особистому профілі ви можете відстежувати свій прогрес, бачити свої досягнення та налаштовувати ваші навчальні вподобання, щоб зробити ваш навчальний досвід максимально ефективним та приємним.</p>
+                        <a href="profile" class="btn btn-primary">Перейти до профілю</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card fixed-size-card">
+                    <img src="/images/practice4.png" class="card-img-top" alt="Практика">
+                    <div class="card-body">
+                        <h5 class="card-title">Практика</h5>
+                        <p class="card-text">Наш розділ практики розроблений для того, щоб допомогти вам покращити ваші мовні навички в інтерактивний спосіб. Від вправ на словник до граматичних вправ - у нас є все!</p>
+                        <a href="practice" class="btn btn-primary">Почати практику</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card fixed-size-card">
+                    <img src="/images/categories.png" class="card-img-top" alt="Deck">
+                    <div class="card-body">
+                        <h5 class="card-title">Категорії</h5>
+                        <p class="card-text">Перегляньте категорії для вивчення нових слів та фраз, розширюйте свій словник та покращуйте знання мови.</p>
+                        <a href="decks" class="btn btn-primary">Переглянути категорії</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+            <div class="card fixed-size-card">
+                <img src="/images/statistics.png" class="card-img-top" alt="Statistics">
+                <div class="card-body">
+                    <h5 class="card-title">Статистика</h5>
+                    <p class="card-text">Перевірте свою статистику навчання, щоб побачити, наскільки ви покращилися, визначити свої сильні та слабкі сторони та встановити нові навчальні цілі.</p>
+                    <a href="statistics" class="btn btn-primary">Переглянути статистику</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card fixed-size-card">
+                <img src="/images/achievements.png" class="card-img-top" alt="Досягнення">
+                <div class="card-body">
+                    <h5 class="card-title">Досягнення</h5>
+                    <p class="card-text">Ознайомтеся зі своєю статистикою досягнень, щоб побачити свої досягнення та прогрес у навчанні, визначити свої сильні й слабкі сторони.</p>
+                    <a href="achievements" class="btn btn-primary">Переглянути досягнення</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card fixed-size-card">
+                <img src="/images/note.png" class="card-img-top" alt="Сповіщення">
+                <div class="card-body">
+                    <h5 class="card-title">Сповіщення</h5>
+                    <p class="card-text">Переглянути системні сповіщення та знакові досягнення які були досягнуті з можливістю читання</p>
+                    <a href="notifications" class="btn btn-primary">Переглянути статистику</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

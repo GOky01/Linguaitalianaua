@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+    <title>Навчання</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+
+        body {
+            background: url(/images/background.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .exercise {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .exercise h1 {
+            margin-top: 0;
+        }
+
+        .center-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        .word {
+            display: inline-block;
+            padding: 10px;
+            margin: 5px;
+            background-color: #f1f1f1;
+            cursor: move;
+        }
+
+        .drop-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dropped {
+            background-color: lightgreen;
+        }
+
+        .progress {
+            margin-bottom: 20px;
+        }
+
+        .completed {
+            position: relative;
+        }
+
+        .completed::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background-image: url('https://example.com/checkmark-icon.png');
+            background-size: cover;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container center-screen">
+
+    <div th:if="${exerciseNumber == 1}" id="exercise1" class="exercise">
+        <h1>Вправа 1</h1>
+        <p>Перекладіть слово:</p>
+        <h2 th:text="${word.ukrainian}"></h2>
+        <form action="/check-answer" method="post">
+            <input type="hidden" name="id" th:value="${word.id}"/>
+            <input type="hidden" name="type" value="exercise1"/>
+            <div class="form-group">
+                <label for="answer">Ваша відповідь:</label>
+                <input type="text" class="form-control" id="answer" name="answer" required/>
+            </div>
+            <button type="submit" class="btn btn-primary">Перевірити</button>
+        </form>
+        <div th:if="${exercise1Result == 'correct'}" class="alert alert-success">Correct!</div>
+        <div th:if="${exercise1Result == 'incorrect'}" class="alert alert-danger">Incorrect!</div>
+    </div>
+
+    <div th:if="${exerciseNumber == 2}" id="exercise2" class="exercise">
+        <h1>Вправа 2</h1>
+        <p>Перекладіть перемішане слово по складам:</p>
+        <div id="wordContainer">
+            <h2 th:text="${word.italian}" id="word"></h2>
+            <h2 id="shuffledWord"></h2>
+        </div>
+        <form action="/check-answer" method="post">
+            <input type="hidden" name="id" th:value="${word.id}"/>
+            <input type="hidden" name="type" value="exercise2"/>
+            <div class="form-group">
+                <label for="answer">Ваша відповідь:</label>
+                <input type="text" class="form-control" id="quessAnswer" name="answer" required/>
+            </div>
+            <button type="submit" class="btn btn-primary">Перевірити</button>
+        </form>
+        <div th:if="${exercise2Result == 'correct'}" class="alert alert-success">Correct!</div>
+        <div th:if="${exercise2Result == 'incorrect'}" class="alert alert-danger">Incorrect!</div>
+    </div>
+
+    <div th:if="${exerciseNumber == 3}" id="exercise3" class="exercise">
+        <h1>Вправа 3</h1>
+        <p>Перекладіть речення:</p>
+        <h2 th:text="${sentence.ukrainian}"></h2>
+        <form action="/check-answer" method="post">
+            <input type="hidden" name="id" th:value="${sentence.id}"/>
+            <input type="hidden" name="type" value="exercise3"/>
+            <div class="form-group">
+                <label for="sentenceAnswer">Ваша відповідь:</label>
+                <input type="text" class="form-control" id="sentenceAnswer" name="answer" required/>
+            </div>
+            <button type="submit" class="btn btn-primary">Перевірити</button>
+        </form>
+        <div th:if="${exercise3Result == 'correct'}" class="alert alert-success">Correct!</div>
+        <div th:if="${exercise3Result == 'incorrect'}" class="alert alert-danger">Incorrect!</div>
+    </div>
+
+    <div th:if="${exerciseNumber == 4}" id="exercise4" class="exercise">
+        <h1>Вправа 4</h1>
+        <p>Перекладіть речення швидко:</p>
+        <h2 id="sentence" th:text="${sentence.ukrainian}"></h2>
+        <p id="warning" style="display: none;">Речення зникне через 5 секунди!</p>
+        <form action="/check-answer" method="post">
+            <input type="hidden" name="id" th:value="${sentence.id}"/>
+            <input type="hidden" name="type" value="exercise4"/>
+            <div class="form-group">
+                <label for="sentenceQuickAnswer">Ваша відповідь:</label>
+                <input type="text" class="form-control" id="sentenceQuickAnswer" name="answer" required/>
+            </div>
+            <button type="submit" class="btn btn-primary">Перевірити</button>
+        </form>
+        <div th:if="${exercise4Result == 'correct'}" class="alert alert-success">Correct!</div>
+        <div th:if="${exercise4Result == 'incorrect'}" class="alert alert-danger">Incorrect!</div>
+    </div>
+
+    <div th:if="${exerciseNumber == 5}" id="exercise5" class="exercise">
+        <h1>Вправа 5</h1>
+        <p>Упорядкуйте слова в речення:</p>
+        <h2 id="randsentence" th:text="${sentence != null ? sentence.italian : ''}"></h2>
+        <form action="/check-answer" method="post">
+            <input type="hidden" name="id" th:value="${sentence != null ? sentence.id : ''}"/>
+            <input type="hidden" name="type" value="exercise5"/>
+            <div class="form-group">
+                <label for="randomSentenceAnswer">Ваша відповідь:</label>
+                <input type="text" class="form-control" id="randomSentenceAnswer" name="answer" required/>
+            </div>
+            <button type="submit" class="btn btn-primary">Перевірити</button>
+        </form>
+        <div th:if="${exercise5Result == 'correct'}" class="alert alert-success">Correct!</div>
+        <div th:if="${exercise5Result == 'incorrect'}" class="alert alert-danger">Incorrect!</div>
+    </div>
+
+    <div class="progress-bar bg-success" role="progressbar" th:attr="aria-valuenow=${( exerciseNumber - 1 )*20}"
+         th:style="'width: ' + ${( exerciseNumber - 1 )*20} + '%; background-color: green;'">
+        <span th:text="${( exerciseNumber - 1 )*20} + '%'" style="color: white;"></span>
+    </div>
+    <br>
+    <a href="/" style="text-decoration: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="feather feather-arrow-left-circle">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 8 8 12 12 16"></polyline>
+            <line x1="16" y1="12" x2="8" y2="12"></line>
+        </svg>
+    </a>
+    <script>
+
+        function splitIntoSyllables(word) {
+            let syllables = [];
+            let syllable = "";
+
+            for (let i = 0; i < word.length; i++) {
+                let char = word.charAt(i);
+                syllable += char;
+
+                if ("aeiou".includes(char.toLowerCase())) {
+                    syllables.push(syllable);
+                    syllable = "";
+                }
+            }
+
+            if (syllable) {
+                syllables.push(syllable);
+            }
+
+            return syllables;
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+
+            return array;
+        }
+
+        window.onload = function () {
+            var originalWordElement = document.getElementById('word');
+            var originalWord = originalWordElement.innerHTML;
+            var syllables = splitIntoSyllables(originalWord);
+            var shuffledSyllables = shuffleArray(syllables);
+
+            var shuffledWordContainer = document.getElementById('shuffledWord');
+            shuffledWordContainer.innerHTML = "";
+
+            for (let i = 0; i < shuffledSyllables.length; i++) {
+                shuffledWordContainer.innerHTML += shuffledSyllables[i];
+            }
+
+            originalWordElement.style.display = "none";
+        }
+
+        setTimeout(() => {
+            document.getElementById('warning').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('sentence').style.display = 'none';
+                document.getElementById('warning').style.display = 'none';
+            }, 5000);
+        }, 2000);
+
+        function shuffleWords(sentence) {
+            var words = sentence.split(" ");
+            for (var i = words.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = words[i];
+                words[i] = words[j];
+                words[j] = temp;
+            }
+            return words.join(" ");
+        }
+
+        var originalSentence = document.getElementById('randsentence').innerHTML;
+
+        var shuffledSentence = shuffleWords(originalSentence);
+
+        document.getElementById('randsentence').innerHTML = shuffledSentence;
+
+    </script>
+</div>
+</body>
+</html>

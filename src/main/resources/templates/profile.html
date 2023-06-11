@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Профіль</title>
+    <link rel="stylesheet" href="../static/css/profilebutts.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+        body {
+            background: url(/images/background.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .level-progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: lightgray;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .level-progress-bar .progress {
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .level-progress-bar .progress .progress-bar {
+            border-radius: 10px;
+        }
+
+        .goals-container {
+            margin-top: 20px;
+        }
+
+        .goal-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .goal-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .goal-item .goal-text {
+            flex-grow: 1;
+        }
+
+        .goal-item .delete-goal {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="profile-container">
+    <img src="/images/homeprofile.png" alt="Profile" class="profile-image"/>
+    <div class="container mt-5">
+        <h2>Ваш профіль</h2>
+        <p><strong>Імя користувача:</strong> <span th:text="${user.getUsername()}"></span></p>
+        <p><strong>Поточний рівень:</strong> <span th:text="${user.getLevel()}"></span></p>
+        <p><strong>Загальні очки:</strong> <span th:text="${user.getPoints()}"></span></p>
+        <div class="level-progress-bar">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar"
+                     style="width: ${((user.getPoints() % pointsForNextLevel) / pointsForNextLevel) * 100}%;"
+                     aria-valuenow="${user.getPoints() % pointsForNextLevel}"
+                     aria-valuemin="0" aria-valuemax="${pointsForNextLevel}">
+                    <span th:text="${user.getPoints() % pointsForNextLevel}"></span> /
+                    <span th:text="${pointsForNextLevel}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-buttons">
+        <button onclick="window.location.href='/'">Головна</button>
+        <button onclick="window.location.href='/practice'">Практика</button>
+    </div>
+
+    <div class="container goals-container">
+        <h3>Мої цілі навчання</h3>
+        <ul>
+            <li class="goal-item" th:each="goal : ${user.goals}">
+                <input type="checkbox" th:id="${'goal-' + goal}"/>
+                <label th:for="${'goal-' + goal}" class="goal-text" th:text="${goal}"></label>
+                <span class="delete-goal" onclick="deleteGoal('${goal}')">&times;</span>
+            </li>
+        </ul>
+        <form id="addGoalForm" onsubmit="addGoal(event)">
+            <input type="text" id="newGoalInput" placeholder="Додати ціль" required/>
+            <button type="submit">Додати</button>
+        </form>
+    </div>
+
+    <script>
+        function addGoal(event) {
+            event.preventDefault();
+            var newGoalInput = document.getElementById('newGoalInput');
+            var newGoalText = newGoalInput.value.trim();
+            if (newGoalText !== '') {
+                var goalId = generateGoalId();
+                var goalItem = createGoalItem(newGoalText, goalId);
+                var goalsContainer = document.querySelector('.goals-container ul');
+                goalsContainer.appendChild(goalItem);
+                newGoalInput.value = '';
+            }
+        }
+
+        function generateGoalId() {
+            return 'goal-' + Date.now();
+        }
+
+        function createGoalItem(text, id) {
+            var li = document.createElement('li');
+            li.classList.add('goal-item');
+
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = id;
+
+            var label = document.createElement('label');
+            label.htmlFor = id;
+            label.classList.add('goal-text');
+            label.innerText = text;
+
+            var deleteBtn = document.createElement('span');
+            deleteBtn.classList.add('delete-goal');
+            deleteBtn.innerText = '×';
+            deleteBtn.addEventListener('click', function () {
+                li.remove();
+            });
+
+            li.appendChild(checkbox);
+            li.appendChild(label);
+            li.appendChild(deleteBtn);
+
+            return li;
+        }
+
+        function deleteGoal(id) {
+            var goalItem = document.getElementById(id);
+            if (goalItem) {
+                goalItem.parentElement.remove();
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

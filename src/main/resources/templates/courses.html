@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Курси</title>
+    <link rel="stylesheet" href="../static/css/profilebutts.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(/images/background.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .courses-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .course {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .course h3 {
+            margin-top: 0;
+        }
+
+        .course p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="courses-container">
+    <h2>Курси</h2>
+    <div class="course">
+        <h3>Курс "Основи італійської мови"</h3>
+        <p>Опис курсу "Основи італійської мови": Цей курс розрахований на початківців і допоможе засвоїти основні розділові мовні навички української мови. Ви будете вивчати граматику, словниковий запас та розвивати навички аудіювання, читання, говоріння та письма.</p>
+        <a href="https://example.com/course1" class="btn btn-primary">Деталі</a>
+    </div>
+    <div class="course">
+        <h3>Курс "Розмовна практика італійською мовою"</h3>
+        <p>Опис курсу "Розмовна практика італійською мовою": Цей курс спрямований на розвиток розмовних навичок італійської мови. Ви будете вчитись виразно та впевнено спілкуватися, вивчати розмовні фрази, вдосконалювати вимову та збагачувати свій словниковий запас.</p>
+        <a href="https://example.com/course2" class="btn btn-primary">Деталі</a>
+    </div>
+    <div class="course">
+        <h3>Курс "Література та культура Італії"</h3>
+        <p>Опис курсу "Література та культура Італії": Цей курс ознайомить вас з літературою та культурою Італії. Ви будете читати та аналізувати класичні твори італійської літератури, вивчати історію та культурні особливості країни, а також розширювати свій словниковий запас і покращувати розуміння текстів.</p>
+        <a href="https://example.com/course3" class="btn btn-primary">Деталі</a>
+    </div>
+
+    <div class="profile-buttons">
+        <button onclick="window.location.href='/'">Головна</button>
+        <button onclick="window.location.href='/about'">Про нас</button>
+        <button onclick="window.location.href='/practice'">Практика</button>
+        <button onclick="window.location.href='/contacts'">Контакти</button>
+        <button onclick="window.location.href='/faq'">FAQ</button>
+    </div>
+</div>
+</body>
+</html>

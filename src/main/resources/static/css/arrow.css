@@ -1,0 +1,17 @@
+.back-arrow {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    text-decoration: none;
+    text-align: center;
+    line-height: 30px;
+}
+
+.back-arrow svg {
+    fill: #000;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}

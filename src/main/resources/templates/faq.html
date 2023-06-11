@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>FAQ</title>
+    <link rel="stylesheet" href="../static/css/profilebutts.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(/images/background.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .faq-item h4 {
+            margin-top: 0;
+        }
+
+        .faq-item p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="faq-container">
+    <h2>FAQ</h2>
+<!--    <div class="faq-item">-->
+<!--        <h4>Як можна розпочати вивчення італійської мови на LinguaUa?</h4>-->
+<!--        <p>Для початку вивчення італійської мови на LinguaUa перейдіть на сторінку "Практика". Там ви зможете виконувати вправи, вивчати нові слова та речення, а також вдосконалювати свої навички.</p>-->
+<!--    </div>-->
+    <div class="faq-item">
+        <h4>Як можна відстежувати свій прогрес в навчанні?</h4>
+        <p>На LinguaUa у вас є особистий профіль, де ви можете переглянути свій поточний рівень, набрані очки та прогрес у виконанні вправ. Перейдіть на сторінку "Профіль", щоб переглянути цю інформацію.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Як можна змінити налаштування свого профілю?</h4>
+        <p>У своєму профілі на LinguaUa ви можете налаштувати свої інтереси, цілі навчання та інші параметри. Натисніть на кнопку "Редагувати профіль" на сторінці "Профіль" і внесіть необхідні зміни.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Як можна зв'язатися з командою LinguaUa?</h4>
+        <p>Якщо у вас є запитання, пропозиції або проблеми, ви можете зв'язатися з нами за допомогою контактних даних, що наведені на сторінці "Контакти". Ми будемо раді допомогти вам!</p>
+    </div>
+    <div class="faq-item">
+        <h4>Чи є можливість отримати сертифікат після завершення курсу?</h4>
+        <p>Так, LinguaUa надає можливість отримати сертифікат після успішного завершення певного курсу?. Детальніше інформацію про отримання сертифіката ви знайдете на сторінці курсу.</p>
+    </div>
+    <div class="profile-buttons">
+        <button onclick="window.location.href='/'">Головна</button>
+        <button onclick="window.location.href='/about'">Про нас</button>
+        <button onclick="window.location.href='/practice'">Практика</button>
+        <button onclick="window.location.href='/contacts'">Контакти</button>
+        <button onclick="window.location.href='/courses'">Курси</button>
+    </div>
+</div>
+</body>
+</html>

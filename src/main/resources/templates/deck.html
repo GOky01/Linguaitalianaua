@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Категорії</title>
+  <style>
+    .container {
+      max-width: 960px;
+    }
+    .card {
+      margin: 20px 0;
+    }
+    .btn-sm {
+      margin-top: 10px;
+    }
+    form {
+      margin: 10px 0;
+    }
+    input, textarea {
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background: url(/images/background.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <a href="/" class="back-arrow">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
+      <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </svg>
+  </a>
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>Створити нову категорію</h1>
+      <form th:action="@{/decks/create}" method="post">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Назва категорії" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <textarea name="description" placeholder="Опис категорії" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Створити категорію</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4" th:each="deck : ${decks}">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title" th:text="${deck.name}"></h2>
+          <p class="card-text" th:text="${deck.description}"></p>
+          <h4>Слова:</h4>
+          <ul>
+            <li th:each="word : ${deck.words}" th:text="${word}"></li>
+          </ul>
+
+          <h4>Речення:</h4>
+          <ul>
+            <li th:each="sentence : ${deck.sentences}" th:text="${sentence}"></li>
+          </ul>
+          <form th:action="@{/decks/{deckId}/add-word(deckId=${deck.id})}" method="post">
+            <input type="text" name="word" placeholder="Слово"><br>
+            <button type="submit" class="btn btn-primary btn-sm">Додати слово</button>
+          </form>
+
+          <form th:action="@{/decks/{deckId}/add-sentence(deckId=${deck.id})}" method="post">
+            <input type="text" name="sentence" placeholder="Речення">
+            <button type="submit" class="btn btn-primary btn-sm">Додати речення</button>
+          </form>
+
+          <form th:action="@{/decks/{id}/delete(id=${deck.id})}" method="post">
+            <button type="submit">Видалити категорію</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
