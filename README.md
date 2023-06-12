@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SnackVendingMachine
 
 This is an app that allows users to cope with Snack Vending Machine. Requirements For building and running the application you need:
@@ -59,3 +60,6 @@ Last but not least, after runnig the program you can check it on localhost and m
 
 
 
+=======
+# Linguaitalianaua
+>>>>>>> b38c48599b87d8a6cd2639a08677e66e2f25e373
